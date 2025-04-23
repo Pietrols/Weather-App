@@ -44,15 +44,13 @@ export function events() {
 
   toggleUnitBtn.addEventListener("click", () => {
     currentUnit = currentUnit === "metric" ? "us" : "metric";
-    toggleUnitBtn.textContent =
-      currentUnit === "metric" ? "Switch to °F" : "Switch to °C";
+    toggleUnitBtn.setAttribute("data-unit", currentUnit);
 
     // If there's already weather data, refetch with new units
-    const city = document
-      .getElementById("city-name")
-      .textContent.replace("Name: ", "");
-    if (city && city !== "Name: ") {
-      fetchData(city, currentUnit);
+    const cityDisplay = document.getElementById("city-name").textContent;
+    if (cityDisplay && !cityDisplay.includes("Location:")) {
+      const city = cityDisplay.replace("Name: ", "").trim();
+      if (city) fetchData(city, currentUnit);
     }
   });
 }

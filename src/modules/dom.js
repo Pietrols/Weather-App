@@ -34,7 +34,7 @@ export function domElements() {
   const toggleUnitBtn = document.createElement("button");
   toggleUnitBtn.id = "toggle-unit";
   toggleUnitBtn.type = "button";
-  toggleUnitBtn.textContent = "Switch to °F";
+  toggleUnitBtn.textContent = "";
   form.append(toggleUnitBtn);
 
   const message = document.createElement("p");
@@ -44,6 +44,16 @@ export function domElements() {
   const weatherInfo = document.createElement("div");
   weatherInfo.id = "weather-info";
   container.append(weatherInfo);
+
+  const forecastSection = document.createElement("div");
+  forecastSection.id = "forecast-container";
+  forecastSection.classList.add("forecast-section");
+
+  const forecastTitle = document.createElement("h3");
+  forecastTitle.textContent = "5-Day Forecast";
+  forecastSection.appendChild(forecastTitle);
+
+  container.appendChild(forecastSection);
 
   const cityName = document.createElement("p");
   cityName.id = "city-name";
@@ -73,4 +83,10 @@ export function domElements() {
   conditionsTitle.textContent = "Conditions: ";
   conditions.append(conditionsTitle);
   weatherInfo.append(conditions);
+
+  const loading = document.createElement("div");
+  loading.id = "loading-skeleton";
+  loading.textContent = "⏳ Loading weather data...";
+  loading.style.display = "none"; // initially hidden
+  container.append(loading);
 }
