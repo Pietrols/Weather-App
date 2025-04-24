@@ -31,10 +31,11 @@ export function domElements() {
   clearBtn.textContent = "Clear";
   form.append(clearBtn);
 
+  // Add unit toggle button
   const toggleUnitBtn = document.createElement("button");
   toggleUnitBtn.id = "toggle-unit";
   toggleUnitBtn.type = "button";
-  toggleUnitBtn.textContent = "";
+  toggleUnitBtn.textContent = "°F";
   form.append(toggleUnitBtn);
 
   const message = document.createElement("p");
@@ -44,21 +45,20 @@ export function domElements() {
   const weatherInfo = document.createElement("div");
   weatherInfo.id = "weather-info";
   container.append(weatherInfo);
+  const loading = document.createElement("div");
+  loading.id = "loading-skeleton";
+  loading.textContent = "⏳ Loading weather data...";
+  loading.style.display = "none"; // initially hidden
+  container.append(loading);
 
-  const forecastSection = document.createElement("div");
-  forecastSection.id = "forecast-container";
-  forecastSection.classList.add("forecast-section");
-
-  const forecastTitle = document.createElement("h3");
-  forecastTitle.textContent = "5-Day Forecast";
-  forecastSection.appendChild(forecastTitle);
-
-  container.appendChild(forecastSection);
+  const forecastContainer = document.createElement("div");
+  forecastContainer.id = "forecast-container";
+  forecastContainer.style.display = "none"; // hidden until data is fetched
+  container.append(forecastContainer);
 
   const cityName = document.createElement("p");
   cityName.id = "city-name";
   const cityNameTitle = document.createElement("strong");
-  cityNameTitle.id = "city-name";
   cityNameTitle.textContent = "Name: ";
   cityName.append(cityNameTitle);
   weatherInfo.append(cityName);
@@ -83,10 +83,4 @@ export function domElements() {
   conditionsTitle.textContent = "Conditions: ";
   conditions.append(conditionsTitle);
   weatherInfo.append(conditions);
-
-  const loading = document.createElement("div");
-  loading.id = "loading-skeleton";
-  loading.textContent = "⏳ Loading weather data...";
-  loading.style.display = "none"; // initially hidden
-  container.append(loading);
 }
